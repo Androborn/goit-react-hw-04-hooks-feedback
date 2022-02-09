@@ -1,7 +1,9 @@
 import { useReducer } from 'react';
 import { FeedbackOptions, Statistics, Section, Notification } from '../';
+import { countTotal, countRatio } from '../../services';
 
 const initialFeedbackValues = { good: 0, neutral: 0, bad: 0 };
+const feedbackRatioValue = 'good';
 
 function reducer(state, action) {
   switch (action.type) {
@@ -14,14 +16,6 @@ function reducer(state, action) {
     default:
       throw new Error();
   }
-}
-
-// Should I keep such service functions within the component file, or better to carry out to the separate files?
-function countTotalFeedback(state) {
-  return Object.values(state).reduce((a, b) => a + b);
-}
-function countPositiveFeedbackPercentage(state) {
-  return Math.round((state.good / countTotalFeedback(state)) * 100);
 }
 
 export function Feedback() {
@@ -39,18 +33,18 @@ export function Feedback() {
           options={state}
           onLeaveFeedback={updateFeedbackValues}
           type={'button'}
-        ></FeedbackOptions>
+        />
       </Section>
       <Section title="Statistics">
-        {countTotalFeedback(state) ? (
+        {countTotal(state) ? (
           <Statistics
             options={state}
             style={{ textTransform: 'capitalize' }}
-            total={countTotalFeedback(state)}
-            positivePercentage={countPositiveFeedbackPercentage(state)}
+            totalFeedback={countTotal(state)}
+            positiveFeedbackPercentage={countRatio(state, feedbackRatioValue)}
           />
         ) : (
-          <Notification message="There is no feedback yet"></Notification>
+          <Notification message="There is no feedback yet" />
         )}
       </Section>
     </>

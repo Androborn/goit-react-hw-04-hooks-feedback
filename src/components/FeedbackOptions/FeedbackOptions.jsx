@@ -3,13 +3,7 @@ import { Button } from './FeedbackOptions.styled';
 
 export function FeedbackOptions({ options, onLeaveFeedback, type }) {
   return Object.keys(options).map(dataSetElement => (
-    <Button
-      type={type}
-      key={dataSetElement}
-      onClick={e => {
-        onLeaveFeedback(e);
-      }}
-    >
+    <Button type={type} key={dataSetElement} onClick={onLeaveFeedback}>
       {dataSetElement}
     </Button>
   ));

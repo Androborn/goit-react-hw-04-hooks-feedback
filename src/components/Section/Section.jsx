@@ -5,7 +5,7 @@ export function Section({ title, children }) {
   return (
     <Wrapper>
       <Title>{title}</Title>
-      {children}
+      {children ? children : null}
     </Wrapper>
   );
 }
