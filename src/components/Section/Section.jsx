@@ -9,6 +9,7 @@ export function Section({ title, children }) {
     </Wrapper>
   );
 }
+
 Section.propTypes = {
   title: PropTypes.string.isRequired,
   children: PropTypes.node,

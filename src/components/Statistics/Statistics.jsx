@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
-
 import { List, ListItem } from './Statistics.styled';
-import { StatCountListItems } from './StatCountListItems';
 
-export function Statistics({ options, style, totalFeedback, positiveFeedbackPercentage }) {
+export function Statistics({
+  options,
+  totalFeedback,
+  positiveFeedbackPercentage,
+}) {
   return (
     <List
       satisfactionrate={
@@ -13,13 +15,21 @@ export function Statistics({ options, style, totalFeedback, positiveFeedbackPerc
         'content:"😐"'
       }
     >
-      <StatCountListItems options={options} style={style} />
+      {Object.keys(options).map(optionName => {
+        return (
+          <ListItem key={optionName}>
+            {optionName + ': ' + options[optionName]}
+          </ListItem>
+        );
+      })}
       <ListItem>Total: {totalFeedback}</ListItem>
       <ListItem>Postive feedback: {positiveFeedbackPercentage}%</ListItem>
     </List>
   );
 }
+
 Statistics.propTypes = {
+  options: PropTypes.object.isRequired,
   totalFeedback: PropTypes.number.isRequired,
   positiveFeedbackPercentage: PropTypes.number.isRequired,
 };

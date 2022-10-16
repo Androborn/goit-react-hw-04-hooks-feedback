@@ -1,16 +1,14 @@
 import PropTypes from 'prop-types';
-import { Button } from './FeedbackOptions.styled';
+import { Button } from '../';
 
-export function FeedbackOptions({ options, onLeaveFeedback, type }) {
-  return Object.keys(options).map(dataSetElement => (
-    <Button type={type} key={dataSetElement} onClick={onLeaveFeedback}>
-      {dataSetElement}
-    </Button>
+export function FeedbackOptions({ options, onClick, type }) {
+  return Object.keys(options).map(optionName => (
+    <Button type={type} onClick={onClick} name={optionName} key={optionName} />
   ));
 }
 
 FeedbackOptions.propTypes = {
   options: PropTypes.object.isRequired,
-  onLeaveFeedback: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
   type: PropTypes.string.isRequired,
 };

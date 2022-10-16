@@ -1,5 +1,6 @@
-export { Feedback } from "./Feedback/Feedback";
-export { Statistics } from "./Statistics/Statistics";
-export { FeedbackOptions } from "./FeedbackOptions/FeedbackOptions";
-export { Section } from "./Section/Section";
-export { Notification } from "./Notification/Notification";
+export { Button } from './Button/Button';
+export { Feedback } from './Feedback/Feedback';
+export { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
+export { Notification } from './Notification/Notification';
+export { Section } from './Section/Section';
+export { Statistics } from './Statistics/Statistics';

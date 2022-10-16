@@ -14,12 +14,13 @@ function reducer(state, action) {
     case 'bad':
       return { ...state, bad: state.bad + 1 };
     default:
-      throw new Error();
+      throw new Error('State reducer error');
   }
 }
 
 export function Feedback() {
   const [state, dispatch] = useReducer(reducer, initialFeedbackValues);
+  const feedbackAvailable = countTotal(state);
 
   function updateFeedbackValues(e) {
     const targetElementContent = e.target.textContent;
@@ -31,15 +32,14 @@ export function Feedback() {
       <Section title="Please leave a feedback">
         <FeedbackOptions
           options={state}
-          onLeaveFeedback={updateFeedbackValues}
+          onClick={updateFeedbackValues}
           type={'button'}
         />
       </Section>
       <Section title="Statistics">
-        {countTotal(state) ? (
+        {feedbackAvailable ? (
           <Statistics
             options={state}
-            style={{ textTransform: 'capitalize' }}
             totalFeedback={countTotal(state)}
             positiveFeedbackPercentage={countRatio(state, feedbackRatioValue)}
           />

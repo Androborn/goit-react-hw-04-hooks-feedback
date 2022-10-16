@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Button = styled.button.attrs({ type: 'button' })`
+export const Btn = styled.button`
   min-width: 6rem;
   padding: 1rem;
   &:not(:last-child) {
